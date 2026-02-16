@@ -74,7 +74,7 @@ def get_service_name(port):
 def grab_banner(target, port, timeout):
     """
     تلاش برای دریافت Banner از سرویس
-    مطابق مفهوم Fingerprinting در اسلاید ۲۷
+    مطابق مفهوم Fingerprinting در اسلاید 
     """
     try:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -85,8 +85,8 @@ def grab_banner(target, port, timeout):
         if port == 80 or port == 8080:
             sock.send(b"GET / HTTP/1.0\r\n\r\n")
         elif port == 21:
-            sock.recv(1024)  # FTP معمولاً خودش banner می‌فرستد
-        
+            sock.recv(1024)  # FTP معمولاً خودش banner می‌فرسته
+
         banner = sock.recv(1024).decode('utf-8', errors='ignore').strip()
         sock.close()
         
@@ -197,11 +197,15 @@ def main():
                 banner_info = f"({result['banner']})" if result['banner'] and result['banner'] != "N/A" else ""
                 print(f"{Colors.GREEN}[+] Port {result['port']:<5} | {result['service']:<15} | {result['response_time']} {banner_info}{Colors.RESET}")
 
+            else :
+                print(f"{Colors.RED}[-] Port {result['port']:<5} is {result['status']}{Colors.RESET}")
+
+            
+
     print("-" * 50)
     print(f"{Colors.GREEN}[✓] Scan Completed.{Colors.RESET}")
     print(f"{Colors.BLUE}[i] Total Open Ports Found: {len(open_ports)}{Colors.RESET}")
     
-    # ذخیره گزارش اگر فایل خروجی مشخص شده باشد
     if args.output:
         save_report(open_ports, args.target, args.output)
 
