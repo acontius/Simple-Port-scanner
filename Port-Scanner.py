@@ -5,7 +5,6 @@ from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
 
-# رنگ‌ها برای خروجی زیبا
 class Colors:
     RESET = '\033[0m'
     RED = '\033[91m'
@@ -25,7 +24,6 @@ def banner():
     """)
     print(f"{Colors.RESET}")
     print("Advanced Port Scanner - Phase 3 (Service Detection)")
-    print("Based on Lec8 - Slide 27-28 (Fingerprinting & OS Detection)")
     print("-" * 50)
 
 def validate_ip(ip):
